@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTodoState } from "../TodoContext";
 
 const TodoHeadBlock = styled.div`
   padding-top: 48px;
@@ -44,6 +45,8 @@ const weekday = [
 const days = weekday[date.getDay()];
 
 export default function TodoHead() {
+  const todos = useTodoState();
+  console.log(todos);
   return (
     <TodoHeadBlock>
       <h1>{`${year}년 ${month}월 ${day}일`}</h1>
