@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import TodoHead from "./TodoHead";
-import TodoList from "./TodoList";
 
 const TodoTemplateBlock = styled.div`
   width: 512px;
@@ -21,11 +19,6 @@ const TodoTemplateBlock = styled.div`
   color: black;
 `;
 
-export default function TodoTemplate() {
-  return (
-    <TodoTemplateBlock>
-      <TodoHead />
-      <TodoList />
-    </TodoTemplateBlock>
-  );
+export default function TodoTemplate({ children }) {
+  return <TodoTemplateBlock>{children}</TodoTemplateBlock>;
 }
