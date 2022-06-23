@@ -29,29 +29,22 @@ const TodoHeadBlock = styled.div`
   }
 `;
 
-const date = new Date();
-const year = date.getFullYear().toString();
-const month = date.getMonth().toString();
-const day = date.getDate().toString();
-const weekday = [
-  "일요일",
-  "월요일",
-  "화요일",
-  "수요일",
-  "목요일",
-  "금요일",
-  "토요일",
-];
-const days = weekday[date.getDay()];
+const today = new Date();
+const dateString = today.toLocaleDateString("ko-KR", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const dayName = today.toLocaleDateString("ko-KR", { weekday: "long" });
 
 export default function TodoHead() {
   const todos = useTodoState();
-  console.log(todos);
+  const undoneTasks = todos.filter((todo) => !todo.done);
   return (
     <TodoHeadBlock>
-      <h1>{`${year}년 ${month}월 ${day}일`}</h1>
-      <div className="day">{days}</div>
-      <div className="tasks-left">할 일 2개 남음</div>
+      <h1>{dateString}</h1>
+      <div className="day">{dayName}</div>
+      <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
     </TodoHeadBlock>
   );
 }
